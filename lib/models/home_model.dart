@@ -8,9 +8,9 @@ class HomeModel {
   });
 
   HomeModel.fromJSON(Map<String, dynamic> json)
-      : fontColor = json['fontColor'];
+      : fontColor = Color(json['fontColor']);
 
   Map<String, dynamic> toJSON() => {
-    'fontColor': fontColor
+    'fontColor': fontColor.value
   };
 }

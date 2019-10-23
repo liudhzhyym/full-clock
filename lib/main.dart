@@ -46,6 +46,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Full Clock',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       onGenerateRoute: AppRouter.router.generator,
     );
   }

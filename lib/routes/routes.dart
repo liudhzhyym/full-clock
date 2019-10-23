@@ -7,7 +7,6 @@ class Routes {
   Routes._();
 
   static String home = '/';
-  static String setting = "/setting";
 
   static void configureRoutes() {
     final router = Router();
@@ -20,6 +19,5 @@ class Routes {
     });
 
     router.define(home, handler: homeHandler);
-    router.define(setting, handler: settingHandler);
   }
 }

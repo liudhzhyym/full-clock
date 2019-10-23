@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:full_clock/utils/screen_util.dart';
-import 'package:full_clock/routes/app_router.dart';
 import 'package:full_clock/blocs/home_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -51,6 +50,244 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
       break;
     }
     return title;
+  }
+
+  Future<T> showCustomDialog<T>({
+    @required BuildContext context,
+    bool barrierDismissible = true,
+    WidgetBuilder builder,
+  }) {
+    final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
+    return showGeneralDialog(
+      context: context,
+      pageBuilder: (BuildContext buildContext, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
+        final Widget pageChild = Builder(builder: builder);
+        return SafeArea(
+          child: Builder(builder: (BuildContext context) {
+            return theme != null
+                ? Theme(data: theme, child: pageChild)
+                : pageChild;
+          }),
+        );
+      },
+      barrierDismissible: barrierDismissible,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: Colors.black54,
+      transitionDuration: const Duration(milliseconds: 150),
+      transitionBuilder: _buildMaterialDialogTransitions,
+    );
+  }
+
+  Widget _buildMaterialDialogTransitions(
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child) {
+    return ScaleTransition(
+      scale: CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOut,
+      ),
+      child: child,
+    );
+  }
+
+  Future<Color> showSettingDialog() {
+    return showCustomDialog<Color>(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.white70,
+          child: SizedBox(
+            width: setWidth(400),
+            height: setHeight(400),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(0),
+                  child: Text(
+                    '请选择字体颜色',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: setSp(16),
+                    )
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Card(
+                      color: Colors.white,
+                      elevation: 0.0,
+                      child: Container(
+                        height: setHeight(160),
+                        width: setHeight(160),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(setHeight(80))
+                          ),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.white70,
+                          onTap: (){
+                            Provider.of<HomeBloc>(context).changeFontColor(Colors.white);
+                            Navigator.of(context).pop(Colors.white);
+                          },
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.blue,
+                      elevation: 0.0,
+                      child: Container(
+                        height: setHeight(160),
+                        width: setHeight(160),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(setHeight(80))
+                          ),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.white70,
+                          onTap: (){
+                            Provider.of<HomeBloc>(context).changeFontColor(Colors.blue);
+                            Navigator.of(context).pop(Colors.blue);
+                          },
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.indigo,
+                      elevation: 0.0,
+                      child: Container(
+                        height: setHeight(160),
+                        width: setHeight(160),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(setHeight(80))
+                          ),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.white70,
+                          onTap: (){
+                            Provider.of<HomeBloc>(context).changeFontColor(Colors.indigo);
+                            Navigator.of(context).pop(Colors.indigo);
+                          },
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.green,
+                      elevation: 0.0,
+                      child: Container(
+                        height: setHeight(160),
+                        width: setHeight(160),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(setHeight(80))
+                          ),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.white70,
+                          onTap: (){
+                            Provider.of<HomeBloc>(context).changeFontColor(Colors.green);
+                            Navigator.of(context).pop(Colors.green);
+                          },
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.red,
+                      elevation: 0.0,
+                      child: Container(
+                        height: setHeight(160),
+                        width: setHeight(160),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(setHeight(80))
+                          ),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.white70,
+                          onTap: (){
+                            Provider.of<HomeBloc>(context).changeFontColor(Colors.red);
+                            Navigator.of(context).pop(Colors.red);
+                          },
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.yellow,
+                      elevation: 0.0,
+                      child: Container(
+                        height: setHeight(160),
+                        width: setHeight(160),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(setHeight(80))
+                          ),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.white70,
+                          onTap: (){
+                            Provider.of<HomeBloc>(context).changeFontColor(Colors.yellow);
+                            Navigator.of(context).pop(Colors.yellow);
+                          },
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.pink,
+                      elevation: 0.0,
+                      child: Container(
+                        height: setHeight(160),
+                        width: setHeight(160),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(setHeight(80))
+                          ),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.white70,
+                          onTap: (){
+                            Provider.of<HomeBloc>(context).changeFontColor(Colors.pink);
+                            Navigator.of(context).pop(Colors.pink);
+                          },
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.orange,
+                      elevation: 0.0,
+                      child: Container(
+                        height: setHeight(160),
+                        width: setHeight(160),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(setHeight(80))
+                          ),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.white70,
+                          onTap: (){
+                            Provider.of<HomeBloc>(context).changeFontColor(Colors.orange);
+                            Navigator.of(context).pop(Colors.orange);
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -120,7 +357,12 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          AppRouter.navigateTo(context, Routes.setting);
+//          AppRouter.navigateTo(context, Routes.setting);
+//          Provider.of<HomeBloc>(context).changeFontColor(Colors.blue);
+          Color color = await showSettingDialog();
+          if (color != null) {
+            print('Color is: '+color.toString());
+          }
         },
         backgroundColor: Colors.white54,
         mini: true,
