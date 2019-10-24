@@ -277,7 +277,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                         '${_dataTime.year.toString()}-${_dataTime.month.toString().padLeft(2, '0')}-${_dataTime.day.toString().padLeft(2, '0')}  ${_weekDisplay(_dataTime.weekday)}',
                         style: TextStyle(
                           color: fontColor,
-                          fontSize: setSp(30),
+                          fontSize: setSp(32),
                         ),
                       ),
                     ),
