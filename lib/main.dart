@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Full Clock',
+      title: '嘿钟',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

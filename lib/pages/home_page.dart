@@ -100,7 +100,6 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
         return Dialog(
           backgroundColor: Colors.white70,
           child: SizedBox(
-            width: setWidth(400),
             height: setHeight(400),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -364,7 +363,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
             print('Color is: '+color.toString());
           }
         },
-        backgroundColor: Colors.white54,
+        backgroundColor: Colors.white70,
         mini: true,
         child: Icon(Icons.settings, color: Colors.black54,),
       ),
