@@ -116,6 +116,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.22.4"
+  screen:
+    dependency: "direct main"
+    description:
+      name: screen
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.5"
   shared_preferences:
     dependency: "direct main"
     description:

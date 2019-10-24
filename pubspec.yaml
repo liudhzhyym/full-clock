@@ -35,6 +35,8 @@ dependencies:
   shared_preferences: ^0.5.4
   #电池插件
   battery: ^0.3.1+1
+  #防止锁屏
+  screen: ^0.0.5
 
 dev_dependencies:
   flutter_test:

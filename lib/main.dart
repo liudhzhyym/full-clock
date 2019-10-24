@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:full_clock/routes/app_router.dart';
 import 'package:full_clock/blocs/application_bloc.dart';
 import 'package:full_clock/blocs/home_bloc.dart';
+import 'package:screen/screen.dart';
 
 
 void main() {
@@ -38,6 +39,13 @@ class _MyAppState extends State<MyApp> {
 
   _MyAppState() {
     Routes.configureRoutes();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Prevent screen from going into sleep mode:
+    Screen.keepOn(true);
   }
 
   @override
