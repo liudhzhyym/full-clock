@@ -10,17 +10,15 @@ import 'package:full_clock/blocs/home_bloc.dart';
 
 
 void main() {
-  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]).then((_) {
-    runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(value: ApplicationBloc()),
-          ChangeNotifierProvider.value(value: HomeBloc()),
-        ],
-        child: MyApp(),
-      ),
-    );
-  });
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: ApplicationBloc()),
+        ChangeNotifierProvider.value(value: HomeBloc()),
+      ],
+      child: MyApp(),
+    ),
+  );
 
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
