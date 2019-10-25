@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:full_clock/models/home_model.dart';
 import 'dart:convert';
 import 'package:battery/battery.dart';
+import 'package:rxdart/rxdart.dart';
 
 class HomeBloc with ChangeNotifier {
   String _homeDataKey = "homeData";
@@ -15,12 +16,13 @@ class HomeBloc with ChangeNotifier {
   HomeModel _homeModel = HomeModel(fontColor: Colors.white);
   HomeModel get homeModel => _homeModel;
 
+  final _batteryChangedController = PublishSubject<bool>();
+
   HomeBloc() {
+    _batteryChangedController.stream.listen(updateBatteryLevelDisplay);
     _battery.onBatteryStateChanged.listen((BatteryState state) {
       updateBatteryLevel().then((result) {
-        if (result) {
-          notifyListeners();
-        }
+        _batteryChangedController.sink.add(result);
       });
     });
     Future.wait([
@@ -31,11 +33,23 @@ class HomeBloc with ChangeNotifier {
     });
   }
 
+  @override
+  void dispose() {
+    _batteryChangedController.close();
+    super.dispose();
+  }
+
   Future loadData() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String homeData = sp.getString(_homeDataKey);
     if (homeData != null) {
       _homeModel = HomeModel.fromJSON(json.decode(homeData));
+    }
+  }
+
+  void updateBatteryLevelDisplay(bool v) {
+    if (v) {
+      notifyListeners();
     }
   }
 
