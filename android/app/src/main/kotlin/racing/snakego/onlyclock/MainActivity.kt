@@ -1,4 +1,4 @@
-package racing.snakego.full_clock
+package racing.snakego.onlyclock
 
 import android.os.Bundle
 

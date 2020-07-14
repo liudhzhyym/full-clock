@@ -1,7 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:full_clock/routes/route_handlers.dart';
-import 'package:full_clock/routes/app_router.dart';
+import 'package:only_clock/routes/route_handlers.dart';
+import 'package:only_clock/routes/app_router.dart';
 
 class Routes {
   Routes._();

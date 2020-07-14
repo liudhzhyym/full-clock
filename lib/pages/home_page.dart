@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:full_clock/utils/screen_util.dart';
-import 'package:full_clock/blocs/home_bloc.dart';
+import 'package:only_clock/blocs/application_bloc.dart';
+import 'package:only_clock/lang/app_localizations.dart';
+import 'package:only_clock/utils/screen_util.dart';
+import 'package:only_clock/blocs/home_bloc.dart';
 import 'package:provider/provider.dart';
 
 
@@ -15,38 +17,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with ScreenUtil {
-  DateTime _dataTime = DateTime.now();
-
-  void initState() {
-    super.initState();
-    Timer.periodic(Duration(seconds: 1), _update);
-  }
-
-  void _update(Timer timer) {
-    _dataTime = DateTime.now();
-    setState(() {
-
-    });
-  }
-
   String _weekDisplay(no) {
     String title = '';
     switch (no) {
-      case 1: { title = '星期一'; }
+      case 1: { title = AppLocalizations.of('monday'); }
       break;
-      case 2: { title = '星期二'; }
+      case 2: { title = AppLocalizations.of('tuesday'); }
       break;
-      case 3: { title = '星期三'; }
+      case 3: { title = AppLocalizations.of('wednesday'); }
       break;
-      case 4: { title = '星期四'; }
+      case 4: { title = AppLocalizations.of('thursday'); }
       break;
-      case 5: { title = '星期五'; }
+      case 5: { title = AppLocalizations.of('friday'); }
       break;
-      case 6: { title = '星期六'; }
+      case 6: { title = AppLocalizations.of('saturday'); }
       break;
-      case 7: { title = '星期日'; }
+      case 7: { title = AppLocalizations.of('sunday'); }
       break;
-      default: { title = '未知哦'; }
+      default: { title = AppLocalizations.of('unknown'); }
       break;
     }
     return title;
@@ -94,6 +82,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
   }
 
   Future<Color> showSettingDialog() {
+    var hb = Provider.of<HomeBloc>(context, listen: false);
     return showCustomDialog<Color>(
       context: context,
       builder: (context) {
@@ -105,7 +94,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                 margin: EdgeInsets.all(10),
                 padding: EdgeInsets.all(0),
                 child: Text(
-                    '请选择字体颜色',
+                    AppLocalizations.of('select_font_color'),
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: setSp(24),
@@ -127,8 +116,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                           child: InkWell(
                             splashColor: Colors.white70,
                             onTap: (){
-                              Provider.of<HomeBloc>(context).changeFontColor(Colors.white);
-                              Navigator.of(context).pop(Colors.white);
+                              hb.changeFontColor(Colors.white);
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -140,8 +129,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                           child: InkWell(
                             splashColor: Colors.white70,
                             onTap: (){
-                              Provider.of<HomeBloc>(context).changeFontColor(Colors.blue);
-                              Navigator.of(context).pop(Colors.blue);
+                              hb.changeFontColor(Colors.blue);
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -153,8 +142,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                           child: InkWell(
                             splashColor: Colors.white70,
                             onTap: (){
-                              Provider.of<HomeBloc>(context).changeFontColor(Colors.indigo);
-                              Navigator.of(context).pop(Colors.indigo);
+                              hb.changeFontColor(Colors.indigo);
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -166,8 +155,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                           child: InkWell(
                             splashColor: Colors.white70,
                             onTap: (){
-                              Provider.of<HomeBloc>(context).changeFontColor(Colors.green);
-                              Navigator.of(context).pop(Colors.green);
+                              hb.changeFontColor(Colors.green);
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -179,8 +168,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                           child: InkWell(
                             splashColor: Colors.white70,
                             onTap: (){
-                              Provider.of<HomeBloc>(context).changeFontColor(Colors.red);
-                              Navigator.of(context).pop(Colors.red);
+                              hb.changeFontColor(Colors.red);
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -192,8 +181,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                           child: InkWell(
                             splashColor: Colors.white70,
                             onTap: (){
-                              Provider.of<HomeBloc>(context).changeFontColor(Colors.yellow);
-                              Navigator.of(context).pop(Colors.yellow);
+                              hb.changeFontColor(Colors.yellow);
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -205,8 +194,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                           child: InkWell(
                             splashColor: Colors.white70,
                             onTap: (){
-                              Provider.of<HomeBloc>(context).changeFontColor(Colors.pink);
-                              Navigator.of(context).pop(Colors.pink);
+                              hb.changeFontColor(Colors.pink);
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -218,8 +207,8 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                           child: InkWell(
                             splashColor: Colors.white70,
                             onTap: (){
-                              Provider.of<HomeBloc>(context).changeFontColor(Colors.orange);
-                              Navigator.of(context).pop(Colors.orange);
+                              hb.changeFontColor(Colors.orange);
+                              Navigator.of(context).pop();
                             },
                           ),
                         ),
@@ -236,8 +225,11 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
 
   @override
   Widget build(BuildContext context) {
-    Color fontColor = Provider.of<HomeBloc>(context).homeModel.fontColor;
-    int batteryLevel = Provider.of<HomeBloc>(context).batteryLevel;
+    var ab = Provider.of<ApplicationBloc>(context);
+    int batteryLevel = ab.batteryLevel;
+    DateTime dateTime = ab.dateTime;
+    Color fontColor = Provider.of<HomeBloc>(context).fontColor;
+
     initScreenUtil(context, width: 750, height: 1344);
     return Scaffold(
       body: Center(
@@ -274,7 +266,7 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                       height: setHeight(180),
                       alignment: Alignment.center,
                       child: Text(
-                        '${_dataTime.year.toString()}-${_dataTime.month.toString().padLeft(2, '0')}-${_dataTime.day.toString().padLeft(2, '0')}  ${_weekDisplay(_dataTime.weekday)}',
+                        '${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}  ${_weekDisplay(dateTime.weekday)}',
                         style: TextStyle(
                           color: fontColor,
                           fontSize: setSp(32),
@@ -303,14 +295,14 @@ class _HomePageState extends State<HomePage> with ScreenUtil {
                   child: Text.rich(TextSpan(
                     children: [
                       TextSpan(
-                        text: '${_dataTime.hour.toString().padLeft(2, '0')}:${_dataTime.minute.toString().padLeft(2, '0')}',
+                        text: '${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}',
                         style: TextStyle(
                           color: fontColor,
                           fontSize: setSp(200),
                         ),
                       ),
                       TextSpan(
-                        text: ' ${_dataTime.second.toString().padLeft(2, '0')}',
+                        text: ' ${dateTime.second.toString().padLeft(2, '0')}',
                         style: TextStyle(
                           color: fontColor,
                           fontSize: setSp(40),

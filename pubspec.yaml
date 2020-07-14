@@ -1,4 +1,4 @@
-name: full_clock
+name: only_clock
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -14,7 +14,7 @@ description: A new Flutter application.
 version: 1.0.5+6
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -22,24 +22,26 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^0.1.3
   #屏幕尺寸适配
-  flutter_screenutil: ^0.6.0
+  flutter_screenutil: ^1.1.0
   #响应框架
-  rxdart: ^0.22.4
+  rxdart: ^0.24.1
   #状态管理
-  provider: ^3.1.0+1
+  provider: ^4.1.2
   #页面路由
-  fluro: ^1.5.1
+  fluro: ^1.6.3
   #本地存储
-  shared_preferences: ^0.5.4
+  shared_preferences: ^0.5.7+3
   #电池插件
-  battery: ^0.3.1+1
+  battery: ^1.0.1
   #防止锁屏
-  screen: ^0.0.5
+  wakelock: ^0.1.4+2
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
 
